@@ -1,6 +1,7 @@
 import java.util.*;
 
-class ourstack1{
+class ourstack1
+{
     private int max;
     public char[] arr;
     private int top;
@@ -46,7 +47,8 @@ class ourstack1{
 
 class InfixToPostfix {
     public static int getPrecedence(char operator) {
-        switch(operator) {
+        switch(operator) 
+        {
             case '+':
             case '-':
                 return 1;
@@ -62,28 +64,33 @@ class InfixToPostfix {
 
 
     
-    public static String convert(String infix) {
+    public static String convert(String infix) 
+    {
         ourstack1 stack1 = new ourstack1(infix.length());
         StringBuilder postfix = new StringBuilder();
         
-        for (int i = 0; i < infix.length(); i++) {
+        for (int i = 0; i < infix.length(); i++) 
+        {    
             char ch = infix.charAt(i);
             
-            if (Character.isLetter(ch)) {
-                postfix.append(ch);
-            } else if (ch == '(') {
-                stack1.pushitem(ch);
-            } else if (ch == ')') {
-                while (!stack1.isEmpty() && stack1.peek() != '(') {
-                    postfix.append(stack1.pop());
-                }
+            if (Character.isLetter(ch)) 
+            {postfix.append(ch);
+            } 
                 
+            else if (ch == '(') 
+            {stack1.pushitem(ch);
+            } 
+                
+            else if (ch == ')') 
+            {
+                while (!stack1.isEmpty() && stack1.peek() != '(') 
+                    {postfix.append(stack1.pop());}
                 stack1.pop();
-            } else {
-                while (!stack1.isEmpty() && getPrecedence(ch) <= getPrecedence(stack1.peek())) {
-                    postfix.append(stack1.pop());
-                }
-                
+            } 
+            else 
+            {
+                while (!stack1.isEmpty() && getPrecedence(ch) <= getPrecedence(stack1.peek())) //opthis <= optop
+                {postfix.append(stack1.pop());}
                 stack1.pushitem(ch);
             }
         }
